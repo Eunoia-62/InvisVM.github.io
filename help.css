@@ -1,0 +1,79 @@
+/* ===== MODAL OVERLAY ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease;
+  z-index: 1000;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ===== MODAL BOX ===== */
+.modal-box {
+  position: fixed;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 15px 60px rgba(0, 0, 0, 0.4);
+  width: 90%;
+  max-width: 480px;
+  padding: 2rem 2.5rem;
+  opacity: 0;
+  z-index: 1100;
+  transition:
+    top 0.45s cubic-bezier(0.25, 0.8, 0.25, 1),
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.modal-box.show {
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+/* ===== MODAL HEADER ===== */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #222;
+}
+
+.modal-close {
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: #555;
+  transition: transform 0.2s, color 0.25s;
+}
+
+.modal-close:hover {
+  transform: scale(1.2);
+  color: #00bfa6;
+}
+
+/* ===== MODAL CONTENT ===== */
+.modal-content {
+  color: #333;
+  line-height: 1.6;
+  font-size: 1rem;
+  text-align: left;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
