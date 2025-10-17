@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research - InvisVM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <span>⚡</span> InvisVM
+            </a>
+            <nav>
+                <a href="about.html">About</a>
+                <a href="research.html">Research</a>
+                <a href="features.html">Features</a>
+                <a href="help.html">Help</a>
+                <a href="download.html" class="cta-btn">Download</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Research</h1>
+            <p>Exploring virtualization, process isolation, and window-level interaction techniques</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <section class="section">
+            <h2 class="section-title">Understanding Virtualization & Isolation</h2>
+            <p class="content-text">
+                Before diving into InvisVM's distinctive approach, it is essential to understand the landscape of 
+                virtualization and process isolation technologies. These foundational concepts underpin modern 
+                security practices and system management.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Traditional Virtual Machines</h2>
+            
+            <h3 class="feature-title" style="margin-top: 2rem; margin-bottom: 1rem;">What Are Virtual Machines?</h3>
+            <p class="content-text">
+                Traditional virtual machines (VMs) emulate complete computer systems. Platforms like VMware, VirtualBox, 
+                and Hyper-V provide virtual CPUs, memory, disk drives, and network interfaces. Each VM runs a full 
+                operating system, perceiving exclusive access to hardware while operating entirely within an isolated 
+                software environment.
+            </p>
+
+            <h3 class="feature-title" style="margin-top: 2rem; margin-bottom: 1rem;">How Traditional VMs Ensure Security</h3>
+            <p class="content-text">
+                Traditional VMs provide robust security through complete isolation. The guest OS cannot access host 
+                resources directly, and all interactions pass through the hypervisor, which enforces the security boundary. 
+                Malware or misbehaving software remains confined within its VM environment, unable to affect the host or 
+                other VMs.
+            </p>
+            <p class="content-text">
+                This isolation requires significant resources: multiple gigabytes of RAM, disk space, and CPU usage. Boot 
+                times are measured in minutes. Running multiple VMs concurrently can heavily load the system. Thus, 
+                traditional VMs prioritize security and isolation over lightweight performance.
+            </p>
+
+            <h3 class="feature-title" style="margin-top: 2rem; margin-bottom: 1rem;">Limitations of Traditional Virtualization</h3>
+            <p class="content-text">
+                While versatile, traditional VMs are resource-intensive. They are excellent for testing different operating 
+                systems, isolating development environments, or creating secure sandboxes. However, they are not optimized 
+                for isolating single applications due to high resource usage and longer startup times. Lightweight tasks, 
+                such as opening a suspicious file, do not require a full VM.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">MicroVMs: A Lightweight Alternative</h2>
+            
+            <h3 class="feature-title" style="margin-top: 2rem; margin-bottom: 1rem;">What Are MicroVMs?</h3>
+            <p class="content-text">
+                MicroVMs represent a streamlined approach to virtualization. Platforms like Firecracker (developed by 
+                Amazon for AWS Lambda), Cloud Hypervisor, and QEMU microvm mode provide minimal virtual machines 
+                optimized for speed and efficiency. They include only essential components, start in milliseconds, 
+                and consume significantly less memory.
+            </p>
+            <p class="content-text">
+                A microVM contains a minimal kernel, required drivers, and the target application. Removing unnecessary 
+                components reduces complexity, improves startup time, and minimizes memory consumption—often using 
+                less than 100MB of RAM.
+            </p>
+
+            <h3 class="feature-title" style="margin-top: 2rem; margin-bottom: 1rem;">Security Model of MicroVMs</h3>
+            <p class="content-text">
+                MicroVMs retain traditional VM security by providing strong isolation through virtualization while reducing 
+                overhead. Each instance runs in a self-contained environment, minimizing the attack surface and maintaining 
+                virtual CPU and memory protection.
+            </p>
+            <p class="content-text">
+                They are ideal for serverless computing scenarios, where thousands of isolated instances need rapid startup 
+                and efficient execution. However, microVMs are not inherently designed for desktop application integration.
+            </p>
+
+            <h3 class="feature-title" style="margin-top: 2rem; margin-bottom: 1rem;">Desktop Considerations</h3>
+            <p class="content-text">
+                MicroVMs excel in headless cloud environments. Desktop applications, which require graphical interfaces, 
+                audio, clipboard interaction, and seamless OS integration, present challenges. Bridging these gaps requires 
+                additional infrastructure, which reduces the advantages of lightweight virtualization.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Containers & Application Sandboxing</h2>
+            
+            <h3 class="feature-title" style="margin-top: 2rem; margin-bottom: 1rem;">Container Technology</h3>
+            <p class="content-text">
+                Containers, such as Docker, isolate applications by leveraging operating system features rather than virtualizing 
+                hardware. Linux uses namespaces and cgroups to separate processes while sharing the same kernel. Each container 
+                maintains isolated filesystems, network stacks, and process trees.
+            </p>
+            <p class="content-text">
+                Windows supports Windows Containers and AppContainers, primarily for server workloads or UWP apps. These 
+                mechanisms provide kernel-level isolation but are not optimized for full-featured desktop applications.
+            </p>
+
+            <h3 class="feature-title" style="margin-top: 2rem; margin-bottom: 1rem;">Application Sandboxing Approaches</h3>
+            <p class="content-text">
+                True sandboxing restricts application capabilities through system-level enforcement. Tools like Windows 
+                AppLocker, Software Restriction Policies, Chrome’s sandbox, and Windows Defender Application Guard 
+                limit access to files, registry, and network resources.
+            </p>
+            <p class="content-text">
+                Sandboxes reduce process privileges by assigning restricted tokens, preventing access to protected resources. 
+                While this approach maintains security, it requires deep OS integration, which may affect application functionality 
+                if the software expects full access.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">InvisVM's Innovative Approach</h2>
+            
+            <h3 class="feature-title" style="margin-top: 2rem; margin-bottom: 1rem;">A Visual-Centric Philosophy</h3>
+            <p class="content-text">
+                InvisVM represents a distinct paradigm. It is not a traditional VM, microVM, container, or full sandbox. 
+                Instead, it leverages window-level manipulation to create a visual containment experience that prioritizes 
+                user clarity and interface interaction.
+            </p>
+            <p class="content-text">
+                The concept is simple: users perceive visual boundaries intuitively. When an application appears “embedded,” 
+                it conveys a sense of containment, serving educational and experimental purposes.
+            </p>
+
+            <h3 class="feature-title" style="margin-top: 2rem; margin-bottom: 1rem;">Transparent Containment</h3>
+            <p class="content-text">
+                InvisVM does not enforce traditional security isolation. Embedded applications have full access to user 
+                resources, network, and processes. The containment is visual, designed to demonstrate interface and perception effects.
+            </p>
+            <p class="content-text">
+                By clearly communicating this distinction, InvisVM fosters understanding of the difference between perceived 
+                and actual security boundaries, serving as a valuable educational tool.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Technical Implementation</h2>
+            
+            <h3 class="feature-title" style="margin-top: 2rem; margin-bottom: 1rem;">WinEvent Hook Architecture</h3>
+            <p class="content-text">
+                InvisVM relies on the WinEvent hook system. The SetWinEventHook API monitors system-wide accessibility events, 
+                such as window creation. InvisVM uses out-of-context hooks to capture window events without intrusive injection, 
+                ensuring stability and compatibility.
+            </p>
+            <p class="content-text">
+                Target windows are identified by matching process IDs and validated using multiple criteria including visibility, 
+                hierarchy, style, and size. This ensures correct embedding while minimizing interference with other windows.
+            </p>
+
+            <h3 class="feature-title" style="margin-top: 2rem; margin-bottom: 1rem;">Window Style Manipulation</h3>
+            <p class="content-text">
+                After identification, window styles are modified using GetWindowLong and SetWindowLong. Visual decorations such 
+                as title bars and borders are removed, and windows are reparented as child windows. SetWindowPos updates the 
+                visual appearance immediately, creating a seamless embedding experience.
+            </p>
+
+            <h3 class="feature-title" style="margin-top: 2rem; margin-bottom: 1rem;">Process Lifecycle Management</h3>
+            <p class="content-text">
+                Applications are launched via ShellExecuteEx with monitoring enabled. WaitForInputIdle ensures the target 
+                is ready before embedding. InvisVM gracefully manages termination using WM_CLOSE and TerminateProcess as a last 
+                resort.
+            </p>
+
+            <h3 class="feature-title" style="margin-top: 2rem; margin-bottom: 1rem;">Drawing and Visual Integration</h3>
+            <p class="content-text">
+                Rendering uses GDI with double-buffering for flicker-free drawing. Decorative borders highlight embedded windows, 
+                and bottom-bar buttons emulate macOS-style controls with interactive visual effects.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Security Insights & Educational Value</h2>
+            
+            <h3 class="feature-title" style="margin-top: 2rem; margin-bottom: 1rem;">Understanding Windows Trust Models</h3>
+            <p class="content-text">
+                InvisVM highlights implicit trust between applications and their parent windows. While it does not enforce 
+                security, it demonstrates how window messages and hierarchies can be observed, providing insights into 
+                system behavior.
+            </p>
+
+            <h3 class="feature-title" style="margin-top: 2rem; margin-bottom: 1rem;">Complementary Security Applications</h3>
+            <p class="content-text">
+                InvisVM can be combined with real isolation technologies like AppContainers or Job Objects to make visible 
+                security states and provide research opportunities, such as safely analyzing untrusted applications.
+            </p>
+
+            <h3 class="feature-title" style="margin-top: 2rem; margin-bottom: 1rem;">Educational Impact</h3>
+            <p class="content-text">
+                InvisVM demonstrates the distinction between visual and security isolation. Its codebase provides a hands-on 
+                example of intermediate-to-advanced Windows programming, covering hooks, window manipulation, GDI, and 
+                process management.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Technology Comparison</h2>
+            <p class="content-text">
+                Comparing InvisVM to other isolation technologies:
+            </p>
+
+            <div class="feature-grid" style="margin-top: 3rem;">
+                <div class="feature">
+                    <h3 class="feature-title">Traditional VMs</h3>
+                    <p class="feature-text">
+                        <strong>Isolation:</strong> Complete<br>
+                        <strong>Resource Usage:</strong> High<br>
+                        <strong>Startup Time:</strong> Minutes<br>
+                        <strong>Use Case:</strong> Full OS environments<br>
+                        <strong>Security:</strong> Strong
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <h3 class="feature-title">MicroVMs</h3>
+                    <p class="feature-text">
+                        <strong>Isolation:</strong> Complete<br>
+                        <strong>Resource Usage:</strong> Medium<br>
+                        <strong>Startup Time:</strong> Milliseconds<br>
+                        <strong>Use Case:</strong> Cloud workloads, serverless functions<br>
+                        <strong>Security:</strong> Strong
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <h3 class="feature-title">Containers</h3>
+                    <p class="feature-text">
+                        <strong>Isolation:</strong> Partial<br>
+                        <strong>Resource Usage:</strong> Low<br>
+                        <strong>Startup Time:</strong> Seconds<br>
+                        <strong>Use Case:</strong> Microservices, deployment<br>
+                        <strong>Security:</strong> Good
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <h3 class="feature-title">InvisVM</h3>
+                    <p class="feature-text">
+                        <strong>Isolation:</strong> Visual only<br>
+                        <strong>Resource Usage:</strong> Minimal<br>
+                        <strong>Startup Time:</strong> Instant<br>
+                        <strong>Use Case:</strong> Research, education, UI experimentation<br>
+                        <strong>Security:</strong> Educational/None
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Future Research Directions</h2>
+            
+            <h3 class="feature-title" style="margin-top: 2rem; margin-bottom: 1rem;">Integrating Visual and Real Isolation</h3>
+            <p class="content-text">
+                Combining InvisVM's visual containment with Job Objects or AppContainers could create an intuitive, 
+                secure application environment. Users would benefit from both actual and perceived isolation.
+            </p>
+
+            <h3 class="feature-title" style="margin-top: 2rem; margin-bottom: 1rem;">Machine Learning for Window Detection</h3>
+            <p class="content-text">
+                Using ML models trained on thousands of launches could enhance window detection, overcoming limitations 
+                of heuristic approaches.
+            </p>
+
+            <h3 class="feature-title" style="margin-top: 2rem; margin-bottom: 1rem;">Cross-Application Window Groups</h3>
+            <p class="content-text">
+                Research into grouping related windows automatically would enable coordinated embedding for complex 
+                applications, such as IDEs or email clients.
+            </p>
+
+            <h3 class="feature-title" style="margin-top: 2rem; margin-bottom: 1rem;">Alternative Desktop Paradigms</h3>
+            <p class="content-text">
+                InvisVM suggests new ways to organize desktop applications by containerizing UI contexts and providing 
+                clear visual boundaries.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Conclusion</h2>
+            <p class="content-text">
+                InvisVM occupies a unique space in application isolation research. It demonstrates how visual 
+                presentation impacts user perception, highlights Windows window management, and provides a practical 
+                platform for educational exploration.
+            </p>
+            <p class="content-text">
+                This project exemplifies that impactful research can arise from creative use of existing APIs. InvisVM 
+                raises questions about trust, isolation, and interface design, offering value to researchers, developers, 
+                UI/UX designers, and students alike.
+            </p>
+        </section>
+
+        <section class="section">
+        <div class="note-box">
+            <strong>Note:</strong> InvisVM’s modules evolve with each experimental release — explore, test, and stay updated.
+        </div>
+
+        <div class="cta-cards">
+            <a href="index.html" class="card-link">
+                <div class="card">
+                    <div class="card-left">
+                    <span class="card-icon">🏠</span>
+                    <div>
+                        <h3 class="card-title">Home</h3>
+                        <p class="card-description">
+                        Return to the main page and overview of InvisVM.
+                        </p>
+                    </div>
+                    </div>
+                <div class="card-right">
+                <span class="card-arrow">→</span>
+                </div>
+            </div>
+            </a>
+
+            <a href="about.html" class="card-link">
+            <div class="card">
+                <div class="card-left">
+                <span class="card-icon">📘</span>
+                <div>
+                    <h3 class="card-title">About</h3>
+                    <p class="card-description">
+                    Understand the origin, goals, and development approach behind InvisVM.
+                    </p>
+                </div>
+                </div>
+                <div class="card-right">
+                <span class="card-arrow">→</span>
+                </div>
+            </div>
+            </a>
+
+            <a href="features.html" class="card-link">
+            <div class="card">
+                <div class="card-left">
+                <span class="card-icon">✨</span>
+                <div>
+                    <h3 class="card-title">Features</h3>
+                    <p class="card-description">Discover InvisVM’s rendering layers, containment modules, and live testing tools.</p>
+                </div>
+                </div>
+                <div class="card-right">
+                <span class="card-arrow">→</span>
+                </div>
+            </div>
+            </a>
+
+            <a href="help.html" class="card-link">
+            <div class="card">
+                <div class="card-left">
+                <span class="card-icon">💡</span>
+                <div>
+                    <h3 class="card-title">Help & Support</h3>
+                    <p class="card-description">Find setup guidance, fixes, and advanced debugging tips.</p>
+                </div>
+                </div>
+                <div class="card-right">
+                <span class="card-arrow">→</span>
+                </div>
+            </div>
+            </a>
+
+            <a href="download.html" class="card-link">
+            <div class="card">
+                <div class="card-left">
+                <span class="card-icon">⬇️</span>
+                <div>
+                    <h3 class="card-title">Download InvisVM</h3>
+                    <p class="card-description">Get the latest stable or experimental build for testing.</p>
+                </div>
+                </div>
+                <div class="card-right">
+                <span class="card-arrow">→</span>
+                </div>
+            </div>
+            </a>
+
+        </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <div class="footer-logo">⚡</div>
+                <div class="footer-copyright">© 2025 InvisVM — An Experimental Windows Application</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

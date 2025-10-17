@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Features - InvisVM</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="features.css" />
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo"><span>⚡</span> InvisVM</a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="research.html">Research</a>
+                <a href="features.html" class="active">Features</a>
+                <a href="help.html">Help</a>
+                <a href="download.html" class="cta-btn">Download</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Features</h1>
+            <p class="sub">
+                A curated showcase of InvisVM's experimental capabilities — interactive, research-focused, and evolving.
+            </p>
+        </div>
+    </section>
+
+    <main class="container">
+        <section class="intro">
+            <p class="content-text">
+                InvisVM explores how visual containment and system-level interaction can be combined for research, learning, and UI experimentation. Below are modular capabilities you can examine, test, and build on.
+            </p>
+        </section>
+
+        <section class="features-section" aria-label="Feature showcase">
+            <div class="features-row">
+                <article class="card">
+                    <div class="card-inner">
+                        <h3 class="card-title">Window Embedding Engine</h3>
+                        <p class="card-long">
+                            InvisVM captures window creation events and reparents selected application windows into a seperate instance for safer experimentation.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-inner">
+                        <h3 class="card-title">Live Window Detection</h3>
+                        <p class="card-long">
+                            System-wide hooks detect new windows and apply heuristics to find candidate windows for embedding, filtering transient elements and splash screens.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-inner">
+                        <h3 class="card-title">Process Lifecycle Manager</h3>
+                        <p class="card-long">
+                            Monitors launched processes, coordinates startup, and ensures clean shutdowns with controlled escalation for predictable operation.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-inner">
+                        <h3 class="card-title">Rendering Engine</h3>
+                        <p class="card-long">
+                            Employs double-buffered GDI rendering to eliminate flicker and achieve smooth visuals for window decorations and overlays.
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-content">
+                <h2>Experiment with InvisVM</h2>
+                <p>Push the limits of how windows can be visualized, contained, and interacted with. Dive in and start building your experiments today.</p>
+                <a href="download.html" class="cta-btn">Download InvisVM</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <div class="footer-logo">⚡</div>
+                <div class="footer-copyright">
+                    © 2025 InvisVM — An Experimental Windows Application
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
